@@ -56,9 +56,9 @@ namespace MCM2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea5 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^  legend5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^  legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->Graphic = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
 			this->bDeleteGraph = (gcnew System::Windows::Forms::Button());
 			this->clbModels = (gcnew System::Windows::Forms::CheckedListBox());
@@ -70,17 +70,19 @@ namespace MCM2 {
 			this->Graphic->BackColor = System::Drawing::Color::GhostWhite;
 			this->Graphic->BackImageWrapMode = System::Windows::Forms::DataVisualization::Charting::ChartImageWrapMode::Scaled;
 			this->Graphic->BorderlineColor = System::Drawing::Color::Black;
-			chartArea5->Name = L"ChartArea1";
-			this->Graphic->ChartAreas->Add(chartArea5);
-			legend5->Name = L"Legend1";
-			this->Graphic->Legends->Add(legend5);
+			chartArea1->CursorX->Interval = 0.0001;
+			chartArea1->CursorY->Interval = 0.0001;
+			chartArea1->Name = L"ChartArea1";
+			this->Graphic->ChartAreas->Add(chartArea1);
+			legend1->Name = L"Legend1";
+			this->Graphic->Legends->Add(legend1);
 			this->Graphic->Location = System::Drawing::Point(0, 0);
 			this->Graphic->Name = L"Graphic";
 			this->Graphic->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::SeaGreen;
-			series5->ChartArea = L"ChartArea1";
-			series5->Legend = L"Legend1";
-			series5->Name = L"Series1";
-			this->Graphic->Series->Add(series5);
+			series1->ChartArea = L"ChartArea1";
+			series1->Legend = L"Legend1";
+			series1->Name = L"Series1";
+			this->Graphic->Series->Add(series1);
 			this->Graphic->Size = System::Drawing::Size(891, 644);
 			this->Graphic->TabIndex = 0;
 			this->Graphic->Text = L"Chart";
@@ -98,6 +100,7 @@ namespace MCM2 {
 			this->bDeleteGraph->TabIndex = 36;
 			this->bDeleteGraph->Text = L"Удалить";
 			this->bDeleteGraph->UseVisualStyleBackColor = false;
+			this->bDeleteGraph->Click += gcnew System::EventHandler(this, &graphForm::bDeleteGraph_Click);
 			// 
 			// clbModels
 			// 
@@ -109,7 +112,7 @@ namespace MCM2 {
 			this->clbModels->FormattingEnabled = true;
 			this->clbModels->Location = System::Drawing::Point(886, 0);
 			this->clbModels->Name = L"clbModels";
-			this->clbModels->Size = System::Drawing::Size(266, 567);
+			this->clbModels->Size = System::Drawing::Size(266, 544);
 			this->clbModels->TabIndex = 38;
 			this->clbModels->SelectedIndexChanged += gcnew System::EventHandler(this, &graphForm::clbModels_SelectedIndexChanged);
 			// 
@@ -136,5 +139,6 @@ namespace MCM2 {
 #pragma endregion
 	private: System::Void graphForm_Load(System::Object^  sender, System::EventArgs^  e);
 	private: System::Void clbModels_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void bDeleteGraph_Click(System::Object^  sender, System::EventArgs^  e);
 };
 }

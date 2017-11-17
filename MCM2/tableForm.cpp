@@ -27,6 +27,8 @@ System::Void tableForm::tableForm_Load(System::Object^  sender, System::EventArg
 		dgTable->Columns->Clear();
 		dgTable->ColumnCount = 5 * models.size();
 
+		System::String ^ result;
+
 		for (int k = 0; k < models.size(); ++k)
 		{
 			dgTable->Columns[0 + 5 * k]->Name = "Шаг " + Convert::ToString(k);
@@ -34,7 +36,23 @@ System::Void tableForm::tableForm_Load(System::Object^  sender, System::EventArg
 			dgTable->Columns[2 + 5 * k]->Name = "Высота " + Convert::ToString(k);
 			dgTable->Columns[3 + 5 * k]->Name = "Скорость " + Convert::ToString(k);
 			dgTable->Columns[4 + 5 * k]->Name = "Ускорение " + Convert::ToString(k);
+
+			result += "Эксперимент №" + Convert::ToString(k) +
+				"\nНачальные условия: y0=" + Convert::ToString(models[k].initHeight()) + 
+				", v0=" + Convert::ToString(models[k].initSpeed()) +
+				"\nУскорение свободного падения: g=" + Convert::ToString(models[k].gravity()) +
+				"\nДействующие силы:\n" +
+				"Сила тяжести\n";
+			if (models[k].powArchimedes())
+				result += "Сила Архимеда\n";
+			if (models[k].powGas())
+				result += "Сила сопротивления газа\n";
+			if (models[k].powLiquid())
+				result += "Сила сопротивления жидкости\n";
+			result += "\n";
 		}
+
+		lInfo->Text = result;
 
 		dgTable->Rows->Add(myModel.pointsNum());
 

@@ -18,9 +18,6 @@
     <ClCompile Include="model.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="mainForm.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
@@ -47,6 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="mainForm.resx">
+      <Filter>Файлы ресурсов</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="graphForm.resx">
+      <Filter>Файлы ресурсов</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tableForm.resx">
       <Filter>Файлы ресурсов</Filter>
     </EmbeddedResource>
   </ItemGroup>

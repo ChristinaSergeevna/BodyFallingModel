@@ -43,6 +43,8 @@ public:
 	double initTime() { return initTime_; }
 	double finalTime() { return finalTime_; }
 	double initHeight() { return initHeight_; }
+	double initSpeed() { return initSpeed_; }
+	double gravity() { return gravity_; }
 
 	std::pair<double, double> result(int i) { return res_[i]; }
 	double velocity(int i) { return velocity_[i]; }
@@ -51,8 +53,13 @@ public:
 	void powArchimedes(bool p) { powArchimedes_ = p; }
 	void powLiquid(bool p) { powLiquid_ = p; }
 	void powGas(bool p) { powGas_ = p; }
+
 	void graph(char ch) { graph_ = ch; }
 	char graph() { return graph_; }
+
+	bool powArchimedes() { return powArchimedes_; }
+	bool powLiquid() { return powLiquid_ ; }
+	bool powGas() { return powGas_; }
 
 	double linearResistance(double v) { return -linearCoeff_ * v / mass_; }
 	double squareResistance(double v) { return -squareCoeff_ * v *  abs(v) / mass_; }

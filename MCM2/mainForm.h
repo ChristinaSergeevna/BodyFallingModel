@@ -202,6 +202,7 @@ namespace MCM2 {
 			this->cbLiquidResistance->TabIndex = 8;
 			this->cbLiquidResistance->Text = L"Сила сопротивления жидкости";
 			this->cbLiquidResistance->UseVisualStyleBackColor = true;
+			this->cbLiquidResistance->CheckedChanged += gcnew System::EventHandler(this, &mainForm::cbLiquidResistance_CheckedChanged);
 			// 
 			// cbGasResistance
 			// 
@@ -215,6 +216,7 @@ namespace MCM2 {
 			this->cbGasResistance->TabIndex = 9;
 			this->cbGasResistance->Text = L"Сила сопротивления газа";
 			this->cbGasResistance->UseVisualStyleBackColor = true;
+			this->cbGasResistance->CheckedChanged += gcnew System::EventHandler(this, &mainForm::cbGasResistance_ChangeUICues);
 			// 
 			// lHeight
 			// 
@@ -305,7 +307,7 @@ namespace MCM2 {
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(1001, 81);
 			this->label8->TabIndex = 17;
-			this->label8->Text = L"Моделирование явления падения тел";
+			this->label8->Text = L"Моделирование процесса падения тел";
 			this->label8->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// lDensity
@@ -337,6 +339,7 @@ namespace MCM2 {
 			this->textHeight->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->textHeight->DecimalPlaces = 2;
 			this->textHeight->Location = System::Drawing::Point(283, 146);
+			this->textHeight->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000000, 0, 0, 0 });
 			this->textHeight->Name = L"textHeight";
 			this->textHeight->Size = System::Drawing::Size(80, 30);
 			this->textHeight->TabIndex = 22;
@@ -592,5 +595,15 @@ namespace MCM2 {
 private: System::Void bCalculation_Click(System::Object^  sender, System::EventArgs^  e);
 private: System::Void bSave_Click(System::Object^  sender, System::EventArgs^  e);
 private: void calc();
+private: System::Void cbLiquidResistance_CheckedChanged(System::Object^  sender, System::EventArgs^  e) 
+{
+	if (cbLiquidResistance->Checked)
+		cbGasResistance->Checked = false;
+}
+private: System::Void cbGasResistance_ChangeUICues(System::Object^  sender, System::EventArgs^  e)
+{
+	if (cbGasResistance->Checked)
+		cbLiquidResistance->Checked = false;
+}
 };
 }
