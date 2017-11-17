@@ -74,7 +74,7 @@ namespace MCM2 {
 
 	private: System::Windows::Forms::Label^  label8;
 	private: System::Windows::Forms::Label^  lDensity;
-	private: System::Windows::Forms::Label^  lGravity;
+
 
 
 	private: System::Windows::Forms::Label^  lInitTime;
@@ -95,7 +95,7 @@ namespace MCM2 {
 
 	private: System::Windows::Forms::NumericUpDown^  textDensity;
 
-	private: System::Windows::Forms::NumericUpDown^  textGravity;
+
 
 	private: System::Windows::Forms::Label^  lGraphType;
 
@@ -109,6 +109,12 @@ namespace MCM2 {
 
 	private: System::Windows::Forms::Button^  bCalculation;
 	private: System::Windows::Forms::Button^  bSave;
+	private: System::Windows::Forms::CheckBox^  cbGravity;
+	private: System::Windows::Forms::Label^  lViscosity;
+
+	private: System::Windows::Forms::NumericUpDown^  textViscosity;
+
+
 
 
 
@@ -142,7 +148,6 @@ namespace MCM2 {
 			this->lMass = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->lDensity = (gcnew System::Windows::Forms::Label());
-			this->lGravity = (gcnew System::Windows::Forms::Label());
 			this->lInitTime = (gcnew System::Windows::Forms::Label());
 			this->textHeight = (gcnew System::Windows::Forms::NumericUpDown());
 			this->textSpeed = (gcnew System::Windows::Forms::NumericUpDown());
@@ -152,13 +157,15 @@ namespace MCM2 {
 			this->textRadius = (gcnew System::Windows::Forms::NumericUpDown());
 			this->textMass = (gcnew System::Windows::Forms::NumericUpDown());
 			this->textDensity = (gcnew System::Windows::Forms::NumericUpDown());
-			this->textGravity = (gcnew System::Windows::Forms::NumericUpDown());
 			this->lGraphType = (gcnew System::Windows::Forms::Label());
 			this->cbGraphType = (gcnew System::Windows::Forms::ComboBox());
 			this->rbGraph = (gcnew System::Windows::Forms::RadioButton());
 			this->rbTable = (gcnew System::Windows::Forms::RadioButton());
 			this->bCalculation = (gcnew System::Windows::Forms::Button());
 			this->bSave = (gcnew System::Windows::Forms::Button());
+			this->cbGravity = (gcnew System::Windows::Forms::CheckBox());
+			this->lViscosity = (gcnew System::Windows::Forms::Label());
+			this->textViscosity = (gcnew System::Windows::Forms::NumericUpDown());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textHeight))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textSpeed))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textInitTime))->BeginInit();
@@ -167,7 +174,7 @@ namespace MCM2 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textRadius))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textMass))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textDensity))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textGravity))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textViscosity))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// cbArchimedes
@@ -175,7 +182,7 @@ namespace MCM2 {
 			this->cbArchimedes->AutoSize = true;
 			this->cbArchimedes->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"cbArchimedes.BackgroundImage")));
 			this->cbArchimedes->ForeColor = System::Drawing::Color::DarkSlateGray;
-			this->cbArchimedes->Location = System::Drawing::Point(457, 146);
+			this->cbArchimedes->Location = System::Drawing::Point(457, 188);
 			this->cbArchimedes->Margin = System::Windows::Forms::Padding(5, 6, 5, 6);
 			this->cbArchimedes->Name = L"cbArchimedes";
 			this->cbArchimedes->Size = System::Drawing::Size(183, 31);
@@ -188,7 +195,7 @@ namespace MCM2 {
 			this->cbLiquidResistance->AutoSize = true;
 			this->cbLiquidResistance->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"cbLiquidResistance.BackgroundImage")));
 			this->cbLiquidResistance->ForeColor = System::Drawing::Color::DarkSlateGray;
-			this->cbLiquidResistance->Location = System::Drawing::Point(457, 197);
+			this->cbLiquidResistance->Location = System::Drawing::Point(457, 231);
 			this->cbLiquidResistance->Margin = System::Windows::Forms::Padding(5, 6, 5, 6);
 			this->cbLiquidResistance->Name = L"cbLiquidResistance";
 			this->cbLiquidResistance->Size = System::Drawing::Size(331, 31);
@@ -201,7 +208,7 @@ namespace MCM2 {
 			this->cbGasResistance->AutoSize = true;
 			this->cbGasResistance->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"cbGasResistance.BackgroundImage")));
 			this->cbGasResistance->ForeColor = System::Drawing::Color::DarkSlateGray;
-			this->cbGasResistance->Location = System::Drawing::Point(457, 246);
+			this->cbGasResistance->Location = System::Drawing::Point(457, 274);
 			this->cbGasResistance->Margin = System::Windows::Forms::Padding(5, 6, 5, 6);
 			this->cbGasResistance->Name = L"cbGasResistance";
 			this->cbGasResistance->Size = System::Drawing::Size(276, 31);
@@ -227,7 +234,7 @@ namespace MCM2 {
 			this->lFinalTime->AutoSize = true;
 			this->lFinalTime->ForeColor = System::Drawing::Color::DarkSlateGray;
 			this->lFinalTime->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lFinalTime.Image")));
-			this->lFinalTime->Location = System::Drawing::Point(71, 288);
+			this->lFinalTime->Location = System::Drawing::Point(71, 292);
 			this->lFinalTime->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->lFinalTime->Name = L"lFinalTime";
 			this->lFinalTime->Size = System::Drawing::Size(171, 27);
@@ -253,7 +260,7 @@ namespace MCM2 {
 			this->lPointsNum->AutoSize = true;
 			this->lPointsNum->ForeColor = System::Drawing::Color::DarkSlateGray;
 			this->lPointsNum->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lPointsNum.Image")));
-			this->lPointsNum->Location = System::Drawing::Point(60, 334);
+			this->lPointsNum->Location = System::Drawing::Point(60, 338);
 			this->lPointsNum->Margin = System::Windows::Forms::Padding(5, 0, 5, 0);
 			this->lPointsNum->Name = L"lPointsNum";
 			this->lPointsNum->Size = System::Drawing::Size(182, 27);
@@ -313,18 +320,6 @@ namespace MCM2 {
 			this->lDensity->Text = L"Плотность среды";
 			this->lDensity->TextAlign = System::Drawing::ContentAlignment::BottomLeft;
 			// 
-			// lGravity
-			// 
-			this->lGravity->AutoSize = true;
-			this->lGravity->ForeColor = System::Drawing::Color::DarkSlateGray;
-			this->lGravity->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lGravity.Image")));
-			this->lGravity->Location = System::Drawing::Point(103, 519);
-			this->lGravity->Name = L"lGravity";
-			this->lGravity->Size = System::Drawing::Size(139, 27);
-			this->lGravity->TabIndex = 20;
-			this->lGravity->Text = L"Сила тяжести";
-			this->lGravity->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
-			// 
 			// lInitTime
 			// 
 			this->lInitTime->AutoSize = true;
@@ -340,24 +335,27 @@ namespace MCM2 {
 			// textHeight
 			// 
 			this->textHeight->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textHeight->DecimalPlaces = 2;
 			this->textHeight->Location = System::Drawing::Point(283, 146);
 			this->textHeight->Name = L"textHeight";
 			this->textHeight->Size = System::Drawing::Size(80, 30);
 			this->textHeight->TabIndex = 22;
-			this->textHeight->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
+			this->textHeight->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
 			// 
 			// textSpeed
 			// 
 			this->textSpeed->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textSpeed->DecimalPlaces = 2;
 			this->textSpeed->Location = System::Drawing::Point(283, 197);
 			this->textSpeed->Name = L"textSpeed";
 			this->textSpeed->Size = System::Drawing::Size(80, 30);
 			this->textSpeed->TabIndex = 23;
-			this->textSpeed->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
+			this->textSpeed->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
 			// 
 			// textInitTime
 			// 
 			this->textInitTime->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textInitTime->DecimalPlaces = 2;
 			this->textInitTime->Location = System::Drawing::Point(283, 246);
 			this->textInitTime->Name = L"textInitTime";
 			this->textInitTime->Size = System::Drawing::Size(80, 30);
@@ -366,33 +364,37 @@ namespace MCM2 {
 			// textFinalTime
 			// 
 			this->textFinalTime->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textFinalTime->Location = System::Drawing::Point(283, 289);
+			this->textFinalTime->DecimalPlaces = 2;
+			this->textFinalTime->Location = System::Drawing::Point(283, 292);
 			this->textFinalTime->Name = L"textFinalTime";
 			this->textFinalTime->Size = System::Drawing::Size(80, 30);
 			this->textFinalTime->TabIndex = 25;
-			this->textFinalTime->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 20, 0, 0, 0 });
+			this->textFinalTime->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 25, 0, 0, 0 });
 			// 
 			// textPointsNum
 			// 
 			this->textPointsNum->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textPointsNum->Location = System::Drawing::Point(283, 335);
+			this->textPointsNum->DecimalPlaces = 2;
+			this->textPointsNum->Location = System::Drawing::Point(283, 338);
 			this->textPointsNum->Name = L"textPointsNum";
 			this->textPointsNum->Size = System::Drawing::Size(80, 30);
 			this->textPointsNum->TabIndex = 26;
-			this->textPointsNum->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 50, 0, 0, 0 });
+			this->textPointsNum->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 25, 0, 0, 0 });
 			// 
 			// textRadius
 			// 
 			this->textRadius->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textRadius->DecimalPlaces = 2;
 			this->textRadius->Location = System::Drawing::Point(283, 382);
 			this->textRadius->Name = L"textRadius";
 			this->textRadius->Size = System::Drawing::Size(80, 30);
 			this->textRadius->TabIndex = 27;
-			this->textRadius->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 0 });
+			this->textRadius->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 3, 0, 0, 0 });
 			// 
 			// textMass
 			// 
 			this->textMass->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textMass->DecimalPlaces = 2;
 			this->textMass->Location = System::Drawing::Point(283, 429);
 			this->textMass->Name = L"textMass";
 			this->textMass->Size = System::Drawing::Size(80, 30);
@@ -402,21 +404,13 @@ namespace MCM2 {
 			// textDensity
 			// 
 			this->textDensity->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textDensity->DecimalPlaces = 2;
 			this->textDensity->Location = System::Drawing::Point(283, 473);
 			this->textDensity->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
 			this->textDensity->Name = L"textDensity";
 			this->textDensity->Size = System::Drawing::Size(80, 30);
 			this->textDensity->TabIndex = 29;
-			this->textDensity->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
-			// 
-			// textGravity
-			// 
-			this->textGravity->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textGravity->Location = System::Drawing::Point(283, 520);
-			this->textGravity->Name = L"textGravity";
-			this->textGravity->Size = System::Drawing::Size(80, 30);
-			this->textGravity->TabIndex = 30;
-			this->textGravity->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
+			this->textDensity->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			// 
 			// lGraphType
 			// 
@@ -439,6 +433,7 @@ namespace MCM2 {
 			this->cbGraphType->Name = L"cbGraphType";
 			this->cbGraphType->Size = System::Drawing::Size(159, 35);
 			this->cbGraphType->TabIndex = 32;
+			this->cbGraphType->Text = L"Высота";
 			// 
 			// rbGraph
 			// 
@@ -490,6 +485,43 @@ namespace MCM2 {
 			this->bSave->TabIndex = 36;
 			this->bSave->Text = L"Сохранить";
 			this->bSave->UseVisualStyleBackColor = false;
+			this->bSave->Click += gcnew System::EventHandler(this, &mainForm::bSave_Click);
+			// 
+			// cbGravity
+			// 
+			this->cbGravity->AutoSize = true;
+			this->cbGravity->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"cbGravity.BackgroundImage")));
+			this->cbGravity->ForeColor = System::Drawing::Color::DarkSlateGray;
+			this->cbGravity->Location = System::Drawing::Point(457, 145);
+			this->cbGravity->Margin = System::Windows::Forms::Padding(5, 6, 5, 6);
+			this->cbGravity->Name = L"cbGravity";
+			this->cbGravity->Size = System::Drawing::Size(269, 31);
+			this->cbGravity->TabIndex = 37;
+			this->cbGravity->Text = L"Сила тяжести постоянна";
+			this->cbGravity->UseVisualStyleBackColor = true;
+			// 
+			// lViscosity
+			// 
+			this->lViscosity->AutoSize = true;
+			this->lViscosity->ForeColor = System::Drawing::Color::DarkSlateGray;
+			this->lViscosity->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"lViscosity.Image")));
+			this->lViscosity->Location = System::Drawing::Point(83, 516);
+			this->lViscosity->Name = L"lViscosity";
+			this->lViscosity->Size = System::Drawing::Size(159, 27);
+			this->lViscosity->TabIndex = 38;
+			this->lViscosity->Text = L"Вязкость среды";
+			this->lViscosity->TextAlign = System::Drawing::ContentAlignment::BottomLeft;
+			// 
+			// textViscosity
+			// 
+			this->textViscosity->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textViscosity->DecimalPlaces = 2;
+			this->textViscosity->Location = System::Drawing::Point(283, 516);
+			this->textViscosity->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
+			this->textViscosity->Name = L"textViscosity";
+			this->textViscosity->Size = System::Drawing::Size(80, 30);
+			this->textViscosity->TabIndex = 39;
+			this->textViscosity->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
 			// 
 			// mainForm
 			// 
@@ -500,13 +532,15 @@ namespace MCM2 {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(940, 617);
+			this->Controls->Add(this->textViscosity);
+			this->Controls->Add(this->lViscosity);
+			this->Controls->Add(this->cbGravity);
 			this->Controls->Add(this->bSave);
 			this->Controls->Add(this->bCalculation);
 			this->Controls->Add(this->rbTable);
 			this->Controls->Add(this->rbGraph);
 			this->Controls->Add(this->cbGraphType);
 			this->Controls->Add(this->lGraphType);
-			this->Controls->Add(this->textGravity);
 			this->Controls->Add(this->textDensity);
 			this->Controls->Add(this->textMass);
 			this->Controls->Add(this->textRadius);
@@ -516,7 +550,6 @@ namespace MCM2 {
 			this->Controls->Add(this->textSpeed);
 			this->Controls->Add(this->textHeight);
 			this->Controls->Add(this->lInitTime);
-			this->Controls->Add(this->lGravity);
 			this->Controls->Add(this->lDensity);
 			this->Controls->Add(this->label8);
 			this->Controls->Add(this->lMass);
@@ -548,7 +581,7 @@ namespace MCM2 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textRadius))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textMass))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textDensity))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textGravity))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->textViscosity))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -557,5 +590,7 @@ namespace MCM2 {
 	private: System::Void mainForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
 private: System::Void bCalculation_Click(System::Object^  sender, System::EventArgs^  e);
+private: System::Void bSave_Click(System::Object^  sender, System::EventArgs^  e);
+private: void calc();
 };
 }

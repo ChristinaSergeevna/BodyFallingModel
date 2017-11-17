@@ -13,24 +13,20 @@ private:
 	double radius_, mass_;
 	double initSpeed_, initHeight_;
 	double initTime_, finalTime_;
-	int pointsNum_;
-	double gravity_;
+	int pointsNum_, density_;
+	double gravity_, viscosity_, S_;
 	double buoyantCoeff_, linearCoeff_, squareCoeff_;
 	int gravConst_;
-	int buoyant_, density_;
-	int linearAcc_, squareAcc_;
 
-	bool powArchimedes_, powLiquid_, powGas_;
+	int powArchimedes_, powLiquid_, powGas_;
+	char graph_;
 
-	std::vector< std::pair<double, double> > res;
-	std::vector<double> velocity;
-	std::vector<double> acceleration;
+	std::vector< std::pair<double, double> > res_;
+	std::vector<double> velocity_;
+	std::vector<double> acceleration_;
 public:
 	Model() {}
 
-	void buoyantCoeff(double c) { buoyantCoeff_ = c; }
-	void linearCoeff(double c) { linearCoeff_ = c; }
-	void squareCoeff(double c) { squareCoeff_ = c; }
 	void mass(double m) { mass_ = m; }
 	void radius(double r) { radius_ = r; }
 	void initSpeed(double v) { initSpeed_ = v; }
@@ -40,15 +36,23 @@ public:
 	void pointsNum(int p) { pointsNum_ = p; }
 	void density(int d) { density_ = d; }
 	void gravity(double g) { gravity_ = g; }
+	void viscosity(double v) { viscosity_ = v; }
+	void square(double s) { S_ = s; }
 
 	int pointsNum() { return pointsNum_; }
 	double initTime() { return initTime_; }
 	double finalTime() { return finalTime_; }
 	double initHeight() { return initHeight_; }
 
+	std::pair<double, double> result(int i) { return res_[i]; }
+	double velocity(int i) { return velocity_[i]; }
+	double acceleration(int i) { return acceleration_[i]; }
+
 	void powArchimedes(bool p) { powArchimedes_ = p; }
 	void powLiquid(bool p) { powLiquid_ = p; }
 	void powGas(bool p) { powGas_ = p; }
+	void graph(char ch) { graph_ = ch; }
+	char graph() { return graph_; }
 
 	double linearResistance(double v) { return -linearCoeff_ * v / mass_; }
 	double squareResistance(double v) { return -squareCoeff_ * v *  abs(v) / mass_; }
@@ -59,3 +63,4 @@ public:
 };
 
 extern Model myModel;
+extern std::vector<Model> models;

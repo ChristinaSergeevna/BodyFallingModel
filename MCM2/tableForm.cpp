@@ -18,25 +18,52 @@ int tableFormInit()
 
 System::Void tableForm::tableForm_Load(System::Object^  sender, System::EventArgs^  e)
 {
-	BaseName = "table.xml";
-	dTable = gcnew DataTable();
-	dSet = gcnew DataSet();
-	if (IO::File::Exists(BaseName) == false) {
-		dgTable->DataSource = dTable;
-		dTable->Columns->Add("Шаг");
-		dTable->Columns->Add("Время");
-		dTable->Columns->Add("Высота");
-		dTable->Columns->Add("Скорость");
-		dSet->Tables->Add(dTable);
+	String ^ BaseName = "table.xml";
+	DataTable ^ dTable = gcnew DataTable();
+	DataSet ^ dSet = gcnew DataSet();
 
-		for (int i = 0; i <= myModel.pointsNum(); i++)
-			dTable->Rows->Add(i, i * myModel.finalTime() / myModel.pointsNum(), 1, 1);
+	if (IO::File::Exists(BaseName) == false)
+	{
+		dgTable->Columns->Clear();
+		dgTable->ColumnCount = 5 * models.size();
+
+		for (int k = 0; k < models.size(); ++k)
+		{
+			dgTable->Columns[0 + 5 * k]->Name = "Шаг " + Convert::ToString(k);
+			dgTable->Columns[1 + 5 * k]->Name = "Время " + Convert::ToString(k);
+			dgTable->Columns[2 + 5 * k]->Name = "Высота " + Convert::ToString(k);
+			dgTable->Columns[3 + 5 * k]->Name = "Скорость " + Convert::ToString(k);
+			dgTable->Columns[4 + 5 * k]->Name = "Ускорение " + Convert::ToString(k);
+		}
+
+		dgTable->Rows->Add(myModel.pointsNum());
+
+		for (int k = 0; k < models.size(); ++k)
+		{
+			for (int i = 0; i < myModel.pointsNum(); ++i)
+				dgTable->Rows[i]->Cells[0 + 5 * k]->Value = i;
+
+			for (int i = 0; i < myModel.pointsNum(); ++i)
+				dgTable->Rows[i]->Cells[1 + 5 * k]->Value = models[k].result(i).first;
+
+			for (int i = 0; i < myModel.pointsNum(); ++i)
+				dgTable->Rows[i]->Cells[2 + 5 * k]->Value = models[k].result(i).second;
+
+			for (int i = 0; i < myModel.pointsNum(); ++i)
+				dgTable->Rows[i]->Cells[3 + 5 * k]->Value = models[k].velocity(i);
+
+			for (int i = 0; i < myModel.pointsNum(); ++i)
+				dgTable->Rows[i]->Cells[4 + 5 * k]->Value = models[k].acceleration(i);
+		}
 	}
-	else {
+	else
+	{
 		dSet->ReadXml(BaseName);
 		String ^ StringXML = dSet->GetXml();
 		dgTable->DataMember = "Название таблицы";
 		dgTable->DataSource = dSet;
 	}
-
+	delete BaseName;
+	delete dTable;
+	delete dSet;
 }

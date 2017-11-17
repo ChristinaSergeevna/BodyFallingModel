@@ -34,7 +34,13 @@ namespace MCM2 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataVisualization::Charting::Chart^  chart1;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^  Graphic;
+	private: System::Windows::Forms::Button^  bDeleteGraph;
+	private: System::Windows::Forms::CheckedListBox^  clbModels;
+
+
+	protected:
+
 	protected:
 
 	private:
@@ -50,43 +56,85 @@ namespace MCM2 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea3 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^  legend3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^  series3 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^  chartArea5 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^  legend5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^  series5 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			this->Graphic = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->bDeleteGraph = (gcnew System::Windows::Forms::Button());
+			this->clbModels = (gcnew System::Windows::Forms::CheckedListBox());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Graphic))->BeginInit();
 			this->SuspendLayout();
 			// 
-			// chart1
+			// Graphic
 			// 
-			chartArea3->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea3);
-			legend3->Name = L"Legend1";
-			this->chart1->Legends->Add(legend3);
-			this->chart1->Location = System::Drawing::Point(0, 0);
-			this->chart1->Name = L"chart1";
-			series3->ChartArea = L"ChartArea1";
-			series3->Legend = L"Legend1";
-			series3->Name = L"Series1";
-			this->chart1->Series->Add(series3);
-			this->chart1->Size = System::Drawing::Size(880, 542);
-			this->chart1->TabIndex = 0;
-			this->chart1->Text = L"chart1";
+			this->Graphic->BackColor = System::Drawing::Color::GhostWhite;
+			this->Graphic->BackImageWrapMode = System::Windows::Forms::DataVisualization::Charting::ChartImageWrapMode::Scaled;
+			this->Graphic->BorderlineColor = System::Drawing::Color::Black;
+			chartArea5->Name = L"ChartArea1";
+			this->Graphic->ChartAreas->Add(chartArea5);
+			legend5->Name = L"Legend1";
+			this->Graphic->Legends->Add(legend5);
+			this->Graphic->Location = System::Drawing::Point(0, 0);
+			this->Graphic->Name = L"Graphic";
+			this->Graphic->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::SeaGreen;
+			series5->ChartArea = L"ChartArea1";
+			series5->Legend = L"Legend1";
+			series5->Name = L"Series1";
+			this->Graphic->Series->Add(series5);
+			this->Graphic->Size = System::Drawing::Size(891, 644);
+			this->Graphic->TabIndex = 0;
+			this->Graphic->Text = L"Chart";
+			// 
+			// bDeleteGraph
+			// 
+			this->bDeleteGraph->BackColor = System::Drawing::Color::DarkSlateGray;
+			this->bDeleteGraph->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->bDeleteGraph->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->bDeleteGraph->ForeColor = System::Drawing::Color::GhostWhite;
+			this->bDeleteGraph->Location = System::Drawing::Point(897, 570);
+			this->bDeleteGraph->Name = L"bDeleteGraph";
+			this->bDeleteGraph->Size = System::Drawing::Size(255, 74);
+			this->bDeleteGraph->TabIndex = 36;
+			this->bDeleteGraph->Text = L"Удалить";
+			this->bDeleteGraph->UseVisualStyleBackColor = false;
+			// 
+			// clbModels
+			// 
+			this->clbModels->BackColor = System::Drawing::Color::GhostWhite;
+			this->clbModels->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->clbModels->Font = (gcnew System::Drawing::Font(L"Microsoft MHei", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->clbModels->ForeColor = System::Drawing::Color::DarkSlateGray;
+			this->clbModels->FormattingEnabled = true;
+			this->clbModels->Location = System::Drawing::Point(886, 0);
+			this->clbModels->Name = L"clbModels";
+			this->clbModels->Size = System::Drawing::Size(266, 567);
+			this->clbModels->TabIndex = 38;
+			this->clbModels->SelectedIndexChanged += gcnew System::EventHandler(this, &graphForm::clbModels_SelectedIndexChanged);
 			// 
 			// graphForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(878, 544);
-			this->Controls->Add(this->chart1);
-			this->MinimumSize = System::Drawing::Size(900, 600);
+			this->AutoScaleDimensions = System::Drawing::SizeF(144, 144);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Dpi;
+			this->BackColor = System::Drawing::Color::GhostWhite;
+			this->ClientSize = System::Drawing::Size(1148, 644);
+			this->Controls->Add(this->clbModels);
+			this->Controls->Add(this->bDeleteGraph);
+			this->Controls->Add(this->Graphic);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
+			this->MaximumSize = System::Drawing::Size(1170, 700);
+			this->MinimumSize = System::Drawing::Size(1170, 700);
 			this->Name = L"graphForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"graphForm";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
+			this->Load += gcnew System::EventHandler(this, &graphForm::graphForm_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Graphic))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-	};
+	private: System::Void graphForm_Load(System::Object^  sender, System::EventArgs^  e);
+	private: System::Void clbModels_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e);
+};
 }

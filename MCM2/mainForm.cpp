@@ -18,8 +18,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 }
 
 Model myModel;
+std::vector<Model> models;
 
-System::Void mainForm::bCalculation_Click(System::Object^  sender, System::EventArgs^  e)
+void mainForm::calc()
 {
 	myModel.initHeight(System::Convert::ToDouble(textHeight->Text));
 	myModel.initSpeed(System::Convert::ToDouble(textSpeed->Text));
@@ -29,13 +30,30 @@ System::Void mainForm::bCalculation_Click(System::Object^  sender, System::Event
 	myModel.finalTime(System::Convert::ToDouble(textFinalTime->Text));
 	myModel.pointsNum(System::Convert::ToDouble(textPointsNum->Text));
 	myModel.density(System::Convert::ToDouble(textDensity->Text));
-	myModel.gravity(System::Convert::ToDouble(textGravity->Text));
+	myModel.viscosity(System::Convert::ToDouble(textViscosity->Text));
+	
+	if (cbGraphType->SelectedItem == "Высота")
+		myModel.graph('h');
+	else if (cbGraphType->SelectedItem == "Скорость")
+		myModel.graph('u');
+	else 
+		myModel.graph('a');
 
-	myModel.powArchimedes(System::Convert::ToBoolean(cbArchimedes->CheckState));
-	myModel.powLiquid(System::Convert::ToBoolean(cbLiquidResistance->CheckState));
-	myModel.powGas(System::Convert::ToBoolean(cbGasResistance->CheckState));
+	if (cbGravity->Checked)
+		myModel.gravity(9.81);
+	else
+		myModel.gravity(myModel.gravityAcceleration(System::Convert::ToDouble(textHeight->Text)));
+
+	myModel.powArchimedes(System::Convert::ToInt32(cbArchimedes->Checked));
+	myModel.powLiquid(System::Convert::ToInt32(cbLiquidResistance->Checked));
+	myModel.powGas(System::Convert::ToInt32(cbGasResistance->Checked));
 
 	myModel.Euler_Cromer(myModel.pointsNum(), myModel.initTime(), myModel.finalTime(), myModel.initHeight());
+}
+
+System::Void mainForm::bCalculation_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	calc();
 
 	if (rbTable->Checked)
 	{
@@ -47,5 +65,10 @@ System::Void mainForm::bCalculation_Click(System::Object^  sender, System::Event
 		graphForm^ gTable = gcnew graphForm;
 		gTable->ShowDialog();
 	}
+}
 
+System::Void mainForm::bSave_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	calc();
+	models.push_back(myModel);
 }

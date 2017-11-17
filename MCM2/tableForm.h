@@ -88,11 +88,11 @@ namespace MCM2 {
 			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
 			this->dgTable->DefaultCellStyle = dataGridViewCellStyle4;
 			this->dgTable->GridColor = System::Drawing::Color::DarkSlateGray;
-			this->dgTable->Location = System::Drawing::Point(0, -2);
+			this->dgTable->Location = System::Drawing::Point(0, 42);
 			this->dgTable->Name = L"dgTable";
 			this->dgTable->RowHeadersVisible = false;
 			this->dgTable->RowTemplate->Height = 28;
-			this->dgTable->Size = System::Drawing::Size(880, 545);
+			this->dgTable->Size = System::Drawing::Size(880, 501);
 			this->dgTable->TabIndex = 0;
 			// 
 			// tableForm
